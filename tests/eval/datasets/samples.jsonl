@@ -1,0 +1,5 @@
+
+{"question": "搜索暴风大剑", "direction": "检索装备", "expected_entities": [{"type": "item", "name_zh": "暴风大剑"}], "expected_tool": "search_items", "expected_traits": []}
+{"question": "当前版本强势阵容推荐", "direction": "推荐阵容", "expected_entities": [], "expected_tool": "query_comps", "expected_traits": []}
+{"question": "搜索巨人杀手", "direction": "检索装备", "expected_entities": [{"type": "item", "name_zh": "巨人杀手"}], "expected_tool": "search_items", "expected_traits": []}
+{"question": "无尽之刃怎么合成", "direction": null, "expected_entities": [{"type": "item", "name_zh": "无尽之刃"}], "expected_tool": "search_items", "expected_traits": ["暴风大剑", "拳套"]}

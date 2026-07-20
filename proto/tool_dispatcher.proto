@@ -1,0 +1,96 @@
+syntax = "proto3";
+
+package tft.agent.v1;
+
+option python_generic_services = true;
+
+// ──────────────────────────────────────────────
+// Common types
+// ──────────────────────────────────────────────
+
+message Entity {
+  string type         = 1;  // e.g. "champion", "trait", "item"
+  string canonical_id = 2;  // stable identifier
+  string name_zh      = 3;  // Chinese display name
+}
+
+message Result {
+  map<string, string> data  = 1;
+  float               score = 2;
+}
+
+message Document {
+  string              content  = 1;
+  float               score    = 2;
+  map<string, string> metadata = 3;
+}
+
+message Record {
+  map<string, string> fields = 1;
+}
+
+// ──────────────────────────────────────────────
+// Tool Dispatcher
+// ──────────────────────────────────────────────
+
+message ToolInvokeRequest {
+  string               tool_name = 1;
+  repeated Entity      entities  = 2;
+  map<string, string>  params    = 3;
+}
+
+message ToolInvokeResponse {
+  repeated Result results    = 1;
+  float           latency_ms = 2;
+}
+
+// ──────────────────────────────────────────────
+// RAG Search
+// ──────────────────────────────────────────────
+
+message RagSearchRequest {
+  string               query   = 1;
+  int32                top_k   = 2;
+  map<string, string>  filters = 3;
+}
+
+message RagSearchResponse {
+  repeated Document documents = 1;
+}
+
+// ──────────────────────────────────────────────
+// Graph Query
+// ──────────────────────────────────────────────
+
+message GraphQueryRequest {
+  string               cypher_query = 1;
+  map<string, string>  params       = 2;
+}
+
+message GraphQueryResponse {
+  repeated Record records = 1;
+}
+
+// ──────────────────────────────────────────────
+// Metrics
+// ──────────────────────────────────────────────
+
+message MetricsResponse {
+  float qps              = 1;
+  float p99_latency_ms   = 2;
+  float tool_success_rate = 3;
+  int32 active_users     = 4;
+}
+
+// ──────────────────────────────────────────────
+// Service definition
+// ──────────────────────────────────────────────
+
+service ToolDispatcher {
+  rpc Invoke     (ToolInvokeRequest)  returns (ToolInvokeResponse);
+  rpc RagSearch  (RagSearchRequest)   returns (RagSearchResponse);
+  rpc GraphQuery (GraphQueryRequest)  returns (GraphQueryResponse);
+  rpc GetMetrics (GetMetricsRequest)  returns (MetricsResponse);
+}
+
+message GetMetricsRequest {}

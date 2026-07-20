@@ -1,0 +1,150 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # ── Lint ────────────────────────────────────────────────────────────────────
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+        with:
+          python-version: "3.11"
+      - name: Install dependencies
+        run: uv sync --all-extras
+      - name: Ruff check
+        run: uv run ruff check .
+      - name: Ruff format check
+        run: uv run ruff format --check .
+
+  # ── Unit tests ──────────────────────────────────────────────────────────────
+  test-unit:
+    name: Unit Tests
+    needs: lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+        with:
+          python-version: "3.11"
+      - name: Install dependencies
+        run: |
+          uv sync --all-extras
+          uv pip install -r requirements-test.txt
+      - name: Run unit tests
+        run: uv run pytest -m unit --cov=api --cov-report=xml --cov-report=term-missing
+      - name: Upload coverage
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-xml
+          path: coverage.xml
+
+  # ── Integration tests ───────────────────────────────────────────────────────
+  test-integration:
+    name: Integration Tests
+    needs: test-unit
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: test
+          POSTGRES_PASSWORD: test
+          POSTGRES_DB: tft_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd="pg_isready -U test"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+    env:
+      DATABASE_URL: postgresql://test:test@localhost:5432/tft_test
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+        with:
+          python-version: "3.11"
+      - name: Install dependencies
+        run: |
+          uv sync --all-extras
+          uv pip install -r requirements-test.txt
+      - name: Run integration tests
+        run: uv run pytest -m integration
+
+  # ── Build & push Docker image ──────────────────────────────────────────────
+  build:
+    name: Build Docker Image
+    needs: test-integration
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Log in to GHCR
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Docker metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ghcr.io/${{ github.repository }}
+          tags: |
+            type=sha,prefix=
+            type=raw,value=latest,enable={{is_default_branch}}
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  # ── Deploy to kind (main branch only) ──────────────────────────────────────
+  deploy-kind:
+    name: Deploy to Kind
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Create kind cluster
+        uses: helm/kind-action@v1
+        with:
+          cluster_name: tft-agent
+      - name: Pull and load image into kind
+        run: |
+          docker pull ghcr.io/${{ github.repository }}:${{ github.sha }}
+          kind load docker-image ghcr.io/${{ github.repository }}:${{ github.sha }} --name tft-agent
+      - name: Deploy with kubectl
+        run: |
+          if [ -d infra/k8s ]; then
+            for f in infra/k8s/*.yaml; do
+              envsubst < "$f" | kubectl apply -f -
+            done
+          else
+            echo "No infra/k8s manifests found; skipping deploy."
+          fi
+        env:
+          IMAGE_TAG: ${{ github.sha }}

@@ -1,0 +1,11 @@
+project: tft-agent-set17
+tracing:
+  enabled: true
+  sampling_rate: 0.1
+  endpoint: https://api.smith.langchain.com
+evaluation:
+  datasets:
+    - name: tft-retrieval
+      description: RAG retrieval quality for TFT domain queries
+    - name: tft-generation
+      description: Response quality for TFT comp/item recommendations

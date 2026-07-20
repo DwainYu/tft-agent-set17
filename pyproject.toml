@@ -1,12 +1,78 @@
 [project]
 name = "tft-agent-set17"
 version = "0.1.0"
-description = "Add your description here"
+description = "TFT Set 17 Space Gods - Data Analysis & AI Agent"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
+    # Data collection
     "aiohttp>=3.14.1",
     "pandas>=3.0.3",
     "python-dotenv>=1.2.2",
     "requests>=2.34.2",
+    # API
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.32",
+    "pydantic>=2.9",
+    "pydantic-settings>=2.5",
+    "python-jose[cryptography]>=3.3",
+    "passlib[bcrypt]>=1.7",
+    "python-multipart>=0.0.9",
+    "aiofiles>=24.1",
+    # RAG Engine
+    "pymilvus>=2.4",
+    "neo4j>=5.0",
+    "FlagEmbedding>=1.3",
+    # Agent Orchestration (W3)
+    "langgraph>=0.4",
+    "langgraph-checkpoint-sqlite>=3.0",
+    "langchain-core>=0.3",
+    "langchain-openai>=0.3",
+    # Testing
+    "pytest>=8.0",
+    "pytest-asyncio>=0.24",
+    "pytest-cov>=6.0",
+    "httpx>=0.28",
+    "ruff>=0.8",
 ]
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W", "N", "UP", "B", "A", "C4", "PL", "TRY", "PD", "PGH", "PT", "FURB", "SIM", "TID"]
+ignore = ["TRY003"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["PLC0415", "PLR2004", "S101", "E501", "PT019"]
+"scripts/**" = ["ALL"]
+"api/**" = ["ALL"]
+"data_collection/**" = ["ALL"]
+"check_db.py" = ["ALL"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["api"]
+
+[tool.black]
+line-length = 120
+target-version = ["py311"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+ignore_missing_imports = true
+warn_return_any = true
+warn_unused_configs = true
+
+[tool.pytest.ini_options]
+markers = [
+    "unit: Unit tests (fast, no external deps)",
+    "integration: Integration tests (need docker/services)",
+    "eval: Evaluation tests (need model endpoints)",
+    "contract: API contract tests (schemathesis)",
+    "chaos: Chaos engineering tests (need k8s)",
+]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+addopts = "-v --tb=short"

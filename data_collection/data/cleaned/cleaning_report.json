@@ -1,0 +1,158 @@
+{
+  "raw_total": 500,
+  "filtered": {
+    "queue": 71,
+    "participants": 0,
+    "duration": 0
+  },
+  "kept": 429,
+  "tables": {
+    "matches": 429,
+    "participants": 3432,
+    "units": 29982,
+    "traits": 37333,
+    "items": 42639
+  },
+  "stats": {
+    "placement_dist": {
+      "1": 429,
+      "2": 429,
+      "3": 429,
+      "4": 429,
+      "5": 429,
+      "6": 429,
+      "7": 429,
+      "8": 429
+    },
+    "unique_players": 546,
+    "unique_champions": 67,
+    "unique_traits": 42,
+    "unique_items": 173,
+    "avg_duration_min": 34.7,
+    "top_15_champions": {
+      "TFT17_Blitzcrank": 1409,
+      "TFT17_Morgana": 1151,
+      "TFT17_Maokai": 1114,
+      "TFT17_Nunu": 1110,
+      "TFT17_TahmKench": 1107,
+      "TFT17_Karma": 1072,
+      "TFT17_IvernMinion": 1041,
+      "TFT17_Rhaast": 989,
+      "TFT17_Aatrox": 913,
+      "TFT17_Mordekaiser": 879,
+      "TFT17_Summon": 858,
+      "TFT17_Illaoi": 850,
+      "TFT17_Shen": 762,
+      "TFT17_Pantheon": 758,
+      "TFT17_Lissandra": 738
+    },
+    "top_15_active_traits": {
+      "TFT17_SpaceGroove": 1834,
+      "TFT17_ShieldTank": 1798,
+      "TFT17_HPTank": 1693,
+      "TFT17_ResistTank": 1547,
+      "TFT17_BlitzcrankUniqueTrait": 1385,
+      "TFT17_DRX": 1313,
+      "TFT17_DarkStar": 1226,
+      "TFT17_FlexTrait": 1204,
+      "TFT17_MorganaUniqueTrait": 1142,
+      "TFT17_TahmKenchUniqueTrait": 1104,
+      "TFT17_RhaastUniqueTrait": 986,
+      "TFT17_MeleeTrait": 917,
+      "TFT17_APTrait": 862,
+      "TFT17_SummonTrait": 857,
+      "TFT17_ShenUniqueTrait": 758
+    },
+    "top_15_items": {
+      "TFT_Item_GargoyleStoneplate": 2700,
+      "TFT_Item_WarmogsArmor": 2042,
+      "TFT_Item_JeweledGauntlet": 1932,
+      "TFT_Item_FrozenHeart": 1730,
+      "TFT_Item_MadredsBloodrazor": 1669,
+      "TFT_Item_GuinsoosRageblade": 1474,
+      "TFT_Item_Redemption": 1400,
+      "TFT_Item_SpearOfShojin": 1387,
+      "TFT_Item_StatikkShiv": 1290,
+      "TFT_Item_RapidFireCannon": 1250,
+      "TFT_Item_ThiefsGloves": 1238,
+      "TFT_Item_Deathblade": 1132,
+      "TFT_Item_RabadonsDeathcap": 1128,
+      "TFT_Item_AdaptiveHelm": 1112,
+      "TFT_Item_Leviathan": 996
+    },
+    "top_10_players_by_games": {
+      "Rinsal#9204": 49,
+      "yumeyume#JP1": 46,
+      "ドーナツ野郎#000": 46,
+      "ringooo#JP96": 44,
+      "ItsCaramel#crml": 43,
+      "reinyourheart#dog": 41,
+      "pkkoro ttv#なんで": 41,
+      "新山玉#JPN": 36,
+      "wado#ouo": 35,
+      "Doritos#1532": 34
+    },
+    "top_10_top4_rate_10games": [
+      {
+        "player": "メガラティオス#りれたん",
+        "games": 13,
+        "top4": 12,
+        "top4_rate": "92.3%"
+      },
+      {
+        "player": "LOL10年生#JP1",
+        "games": 10,
+        "top4": 9,
+        "top4_rate": "90.0%"
+      },
+      {
+        "player": "RAIdq6#JP1",
+        "games": 12,
+        "top4": 10,
+        "top4_rate": "83.3%"
+      },
+      {
+        "player": "うに軍#JP1",
+        "games": 26,
+        "top4": 21,
+        "top4_rate": "80.8%"
+      },
+      {
+        "player": "Maybeaho#6320",
+        "games": 15,
+        "top4": 12,
+        "top4_rate": "80.0%"
+      },
+      {
+        "player": "DKX#JP3",
+        "games": 10,
+        "top4": 8,
+        "top4_rate": "80.0%"
+      },
+      {
+        "player": "新山玉#JPN",
+        "games": 36,
+        "top4": 28,
+        "top4_rate": "77.8%"
+      },
+      {
+        "player": "エビフィレオ村上#MSMS",
+        "games": 13,
+        "top4": 10,
+        "top4_rate": "76.9%"
+      },
+      {
+        "player": "Reedeer#1966",
+        "games": 11,
+        "top4": 8,
+        "top4_rate": "72.7%"
+      },
+      {
+        "player": "Sen siege#4016",
+        "games": 21,
+        "top4": 15,
+        "top4_rate": "71.4%"
+      }
+    ]
+  }
+}

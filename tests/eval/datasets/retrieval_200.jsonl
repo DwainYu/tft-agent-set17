@@ -1,0 +1,200 @@
+{"query": "S17 劫主C出装推荐", "expected_champions": ["TFT17_Zed"], "expected_traits": ["TFT17_ZedUniqueTrait"], "category": "main_carry"}
+{"query": "Set17 灵能特工娑娜最强装备", "expected_champions": ["TFT17_Sona"], "expected_traits": ["TFT17_PsyOps", "TFT17_SonaUniqueTrait", "TFT17_SummonTrait"], "category": "main_carry"}
+{"query": "巴德阵容运营思路 S17", "expected_champions": ["TFT17_Bard"], "expected_traits": ["TFT17_Astronaut", "TFT17_ManaTrait"], "category": "main_carry"}
+{"query": "Set 17 布里茨站位出装攻略", "expected_champions": ["TFT17_Blitzcrank"], "expected_traits": ["TFT17_BlitzcrankUniqueTrait", "TFT17_ShieldTank", "TFT17_SpaceGroove"], "category": "main_carry"}
+{"query": "S17 慎怎么出装伤害最高", "expected_champions": ["TFT17_Shen"], "expected_traits": ["TFT17_ResistTank", "TFT17_ShenUniqueTrait", "TFT17_Timebreaker"], "category": "main_carry"}
+{"query": "格雷福斯带什么装备 Set17", "expected_champions": ["TFT17_Graves"], "expected_traits": ["TFT17_GravesTrait"], "category": "main_carry"}
+{"query": "S17太空 Gods 烬主C阵容", "expected_champions": ["TFT17_Jhin"], "expected_traits": ["TFT17_DarkStar", "TFT17_JhinUniqueTrait", "TFT17_RangedTrait"], "category": "main_carry"}
+{"query": "Set17 幻灵战队菲奥娜怎么搭配", "expected_champions": ["TFT17_Fiora"], "expected_traits": ["TFT17_AnimaSquad", "TFT17_FioraUniqueTrait", "TFT17_MeleeTrait"], "category": "main_carry"}
+{"query": "S17 薇古丝主C出装推荐", "expected_champions": ["TFT17_Vex"], "expected_traits": ["TFT17_Stargazer_Wolf", "TFT17_VexUniqueTrait"], "category": "main_carry"}
+{"query": "天煞劫阵容怎么站位", "expected_champions": ["TFT17_Zed"], "expected_traits": ["TFT17_ZedUniqueTrait"], "category": "main_carry"}
+{"query": "Set17 娑娜最强出装羁绊", "expected_champions": ["TFT17_Sona"], "expected_traits": ["TFT17_PsyOps", "TFT17_SonaUniqueTrait", "TFT17_SummonTrait"], "category": "main_carry"}
+{"query": "S17 巴德装备推荐优先级", "expected_champions": ["TFT17_Bard"], "expected_traits": ["TFT17_Astronaut", "TFT17_ManaTrait"], "category": "main_carry"}
+{"query": "S17 布里茨天胡出装运营", "expected_champions": ["TFT17_Blitzcrank"], "expected_traits": ["TFT17_BlitzcrankUniqueTrait", "TFT17_ShieldTank", "TFT17_SpaceGroove"], "category": "main_carry"}
+{"query": "堡垒卫士慎阵容怎么站位", "expected_champions": ["TFT17_Shen"], "expected_traits": ["TFT17_ResistTank", "TFT17_ShenUniqueTrait", "TFT17_Timebreaker"], "category": "main_carry"}
+{"query": "Set17 格雷福斯最强出装羁绊", "expected_champions": ["TFT17_Graves"], "expected_traits": ["TFT17_GravesTrait"], "category": "main_carry"}
+{"query": "S17 烬装备推荐优先级", "expected_champions": ["TFT17_Jhin"], "expected_traits": ["TFT17_DarkStar", "TFT17_JhinUniqueTrait", "TFT17_RangedTrait"], "category": "main_carry"}
+{"query": "S17 菲奥娜天胡出装运营", "expected_champions": ["TFT17_Fiora"], "expected_traits": ["TFT17_AnimaSquad", "TFT17_FioraUniqueTrait", "TFT17_MeleeTrait"], "category": "main_carry"}
+{"query": "观星者薇古丝阵容怎么站位", "expected_champions": ["TFT17_Vex"], "expected_traits": ["TFT17_Stargazer_Wolf", "TFT17_VexUniqueTrait"], "category": "main_carry"}
+{"query": "Set17 劫最强出装羁绊", "expected_champions": ["TFT17_Zed"], "expected_traits": ["TFT17_ZedUniqueTrait"], "category": "main_carry"}
+{"query": "S17 娑娜装备推荐优先级", "expected_champions": ["TFT17_Sona"], "expected_traits": ["TFT17_PsyOps", "TFT17_SonaUniqueTrait", "TFT17_SummonTrait"], "category": "main_carry"}
+{"query": "S17 巴德天胡出装运营", "expected_champions": ["TFT17_Bard"], "expected_traits": ["TFT17_Astronaut", "TFT17_ManaTrait"], "category": "main_carry"}
+{"query": "汪星机器人布里茨阵容怎么站位", "expected_champions": ["TFT17_Blitzcrank"], "expected_traits": ["TFT17_BlitzcrankUniqueTrait", "TFT17_ShieldTank", "TFT17_SpaceGroove"], "category": "main_carry"}
+{"query": "Set17 慎最强出装羁绊", "expected_champions": ["TFT17_Shen"], "expected_traits": ["TFT17_ResistTank", "TFT17_ShenUniqueTrait", "TFT17_Timebreaker"], "category": "main_carry"}
+{"query": "S17 格雷福斯装备推荐优先级", "expected_champions": ["TFT17_Graves"], "expected_traits": ["TFT17_GravesTrait"], "category": "main_carry"}
+{"query": "S17 烬天胡出装运营", "expected_champions": ["TFT17_Jhin"], "expected_traits": ["TFT17_DarkStar", "TFT17_JhinUniqueTrait", "TFT17_RangedTrait"], "category": "main_carry"}
+{"query": "幻灵战队菲奥娜阵容怎么站位", "expected_champions": ["TFT17_Fiora"], "expected_traits": ["TFT17_AnimaSquad", "TFT17_FioraUniqueTrait", "TFT17_MeleeTrait"], "category": "main_carry"}
+{"query": "Set17 薇古丝最强出装羁绊", "expected_champions": ["TFT17_Vex"], "expected_traits": ["TFT17_Stargazer_Wolf", "TFT17_VexUniqueTrait"], "category": "main_carry"}
+{"query": "S17 劫装备推荐优先级", "expected_champions": ["TFT17_Zed"], "expected_traits": ["TFT17_ZedUniqueTrait"], "category": "main_carry"}
+{"query": "S17 娑娜天胡出装运营", "expected_champions": ["TFT17_Sona"], "expected_traits": ["TFT17_PsyOps", "TFT17_SonaUniqueTrait", "TFT17_SummonTrait"], "category": "main_carry"}
+{"query": "木灵族巴德阵容怎么站位", "expected_champions": ["TFT17_Bard"], "expected_traits": ["TFT17_Astronaut", "TFT17_ManaTrait"], "category": "main_carry"}
+{"query": "Set17 布里茨最强出装羁绊", "expected_champions": ["TFT17_Blitzcrank"], "expected_traits": ["TFT17_BlitzcrankUniqueTrait", "TFT17_ShieldTank", "TFT17_SpaceGroove"], "category": "main_carry"}
+{"query": "S17 慎装备推荐优先级", "expected_champions": ["TFT17_Shen"], "expected_traits": ["TFT17_ResistTank", "TFT17_ShenUniqueTrait", "TFT17_Timebreaker"], "category": "main_carry"}
+{"query": "S17 格雷福斯天胡出装运营", "expected_champions": ["TFT17_Graves"], "expected_traits": ["TFT17_GravesTrait"], "category": "main_carry"}
+{"query": "暗星烬阵容怎么站位", "expected_champions": ["TFT17_Jhin"], "expected_traits": ["TFT17_DarkStar", "TFT17_JhinUniqueTrait", "TFT17_RangedTrait"], "category": "main_carry"}
+{"query": "Set17 菲奥娜最强出装羁绊", "expected_champions": ["TFT17_Fiora"], "expected_traits": ["TFT17_AnimaSquad", "TFT17_FioraUniqueTrait", "TFT17_MeleeTrait"], "category": "main_carry"}
+{"query": "S17 薇古丝装备推荐优先级", "expected_champions": ["TFT17_Vex"], "expected_traits": ["TFT17_Stargazer_Wolf", "TFT17_VexUniqueTrait"], "category": "main_carry"}
+{"query": "S17 劫天胡出装运营", "expected_champions": ["TFT17_Zed"], "expected_traits": ["TFT17_ZedUniqueTrait"], "category": "main_carry"}
+{"query": "灵能特工娑娜阵容怎么站位", "expected_champions": ["TFT17_Sona"], "expected_traits": ["TFT17_PsyOps", "TFT17_SonaUniqueTrait", "TFT17_SummonTrait"], "category": "main_carry"}
+{"query": "Set17 巴德最强出装羁绊", "expected_champions": ["TFT17_Bard"], "expected_traits": ["TFT17_Astronaut", "TFT17_ManaTrait"], "category": "main_carry"}
+{"query": "S17 布里茨装备推荐优先级", "expected_champions": ["TFT17_Blitzcrank"], "expected_traits": ["TFT17_BlitzcrankUniqueTrait", "TFT17_ShieldTank", "TFT17_SpaceGroove"], "category": "main_carry"}
+{"query": "S17 乐芙兰阵容搭配推荐", "expected_champions": ["TFT17_Leblanc"], "expected_traits": ["TFT17_ADMIN", "TFT17_SummonTrait"], "category": "team_comp"}
+{"query": "Set17 重装战士努努和威朗普装备选择", "expected_champions": ["TFT17_Nunu"], "expected_traits": ["TFT17_ShieldTank", "TFT17_Stargazer_Wolf"], "category": "team_comp"}
+{"query": "千珏适合什么阵容 S17", "expected_champions": ["TFT17_Kindred"], "expected_traits": ["TFT17_ASTrait", "TFT17_DRX"], "category": "team_comp"}
+{"query": "S17 卡尔玛羁绊效果出装", "expected_champions": ["TFT17_Karma"], "expected_traits": ["TFT17_DarkStar", "TFT17_FlexTrait"], "category": "team_comp"}
+{"query": "Set 17 斗士阵容塔姆核心", "expected_champions": ["TFT17_TahmKench"], "expected_traits": ["TFT17_HPTank", "TFT17_TahmKenchUniqueTrait"], "category": "team_comp"}
+{"query": "奥瑞利安·索尔怎么运营到三星 S17", "expected_champions": ["TFT17_AurelionSol"], "expected_traits": ["TFT17_ManaTrait", "TFT17_Mecha"], "category": "team_comp"}
+{"query": "S17 娜美阵容搭配推荐", "expected_champions": ["TFT17_Nami"], "expected_traits": ["TFT17_APTrait", "TFT17_SpaceGroove"], "category": "team_comp"}
+{"query": "Set17 木灵族库奇装备选择", "expected_champions": ["TFT17_Corki"], "expected_traits": ["TFT17_Astronaut", "TFT17_Fateweaver"], "category": "team_comp"}
+{"query": "拉莫斯适合什么阵容 S17", "expected_champions": ["TFT17_Rammus"], "expected_traits": ["TFT17_Astronaut", "TFT17_ResistTank"], "category": "team_comp"}
+{"query": "S17 易羁绊效果出装", "expected_champions": ["TFT17_MasterYi"], "expected_traits": ["TFT17_MeleeTrait", "TFT17_PsyOps"], "category": "team_comp"}
+{"query": "Set 17 黑暗魔女阵容莫甘娜核心", "expected_champions": ["TFT17_Morgana"], "expected_traits": ["TFT17_MorganaUniqueTrait"], "category": "team_comp"}
+{"query": "超级机甲怎么运营到三星 S17", "expected_champions": ["TFT17_Galio"], "expected_traits": ["TFT17_FlexTrait", "TFT17_Mecha"], "category": "team_comp"}
+{"query": "S17 锐雯阵容搭配推荐", "expected_champions": ["TFT17_Riven"], "expected_traits": ["TFT17_AssassinTrait", "TFT17_Timebreaker"], "category": "team_comp"}
+{"query": "Set17 狙神霞装备选择", "expected_champions": ["TFT17_Xayah"], "expected_traits": ["TFT17_RangedTrait", "TFT17_Stargazer_Wolf"], "category": "team_comp"}
+{"query": "乐芙兰适合什么阵容 S17", "expected_champions": ["TFT17_Leblanc"], "expected_traits": ["TFT17_ADMIN", "TFT17_SummonTrait"], "category": "team_comp"}
+{"query": "S17 努努和威朗普羁绊效果出装", "expected_champions": ["TFT17_Nunu"], "expected_traits": ["TFT17_ShieldTank", "TFT17_Stargazer_Wolf"], "category": "team_comp"}
+{"query": "Set 17 挑战者阵容千珏核心", "expected_champions": ["TFT17_Kindred"], "expected_traits": ["TFT17_ASTrait", "TFT17_DRX"], "category": "team_comp"}
+{"query": "卡尔玛怎么运营到三星 S17", "expected_champions": ["TFT17_Karma"], "expected_traits": ["TFT17_DarkStar", "TFT17_FlexTrait"], "category": "team_comp"}
+{"query": "S17 塔姆阵容搭配推荐", "expected_champions": ["TFT17_TahmKench"], "expected_traits": ["TFT17_HPTank", "TFT17_TahmKenchUniqueTrait"], "category": "team_comp"}
+{"query": "Set17 神谕奥瑞利安·索尔装备选择", "expected_champions": ["TFT17_AurelionSol"], "expected_traits": ["TFT17_ManaTrait", "TFT17_Mecha"], "category": "team_comp"}
+{"query": "娜美适合什么阵容 S17", "expected_champions": ["TFT17_Nami"], "expected_traits": ["TFT17_APTrait", "TFT17_SpaceGroove"], "category": "team_comp"}
+{"query": "S17 库奇羁绊效果出装", "expected_champions": ["TFT17_Corki"], "expected_traits": ["TFT17_Astronaut", "TFT17_Fateweaver"], "category": "team_comp"}
+{"query": "Set 17 木灵族阵容拉莫斯核心", "expected_champions": ["TFT17_Rammus"], "expected_traits": ["TFT17_Astronaut", "TFT17_ResistTank"], "category": "team_comp"}
+{"query": "易怎么运营到三星 S17", "expected_champions": ["TFT17_MasterYi"], "expected_traits": ["TFT17_MeleeTrait", "TFT17_PsyOps"], "category": "team_comp"}
+{"query": "S17 莫甘娜阵容搭配推荐", "expected_champions": ["TFT17_Morgana"], "expected_traits": ["TFT17_MorganaUniqueTrait"], "category": "team_comp"}
+{"query": "Set17 旅人超级机甲装备选择", "expected_champions": ["TFT17_Galio"], "expected_traits": ["TFT17_FlexTrait", "TFT17_Mecha"], "category": "team_comp"}
+{"query": "锐雯适合什么阵容 S17", "expected_champions": ["TFT17_Riven"], "expected_traits": ["TFT17_AssassinTrait", "TFT17_Timebreaker"], "category": "team_comp"}
+{"query": "S17 霞羁绊效果出装", "expected_champions": ["TFT17_Xayah"], "expected_traits": ["TFT17_RangedTrait", "TFT17_Stargazer_Wolf"], "category": "team_comp"}
+{"query": "Set 17 法官阵容乐芙兰核心", "expected_champions": ["TFT17_Leblanc"], "expected_traits": ["TFT17_ADMIN", "TFT17_SummonTrait"], "category": "team_comp"}
+{"query": "努努和威朗普怎么运营到三星 S17", "expected_champions": ["TFT17_Nunu"], "expected_traits": ["TFT17_ShieldTank", "TFT17_Stargazer_Wolf"], "category": "team_comp"}
+{"query": "S17 俄洛伊出装推荐", "expected_champions": ["TFT17_Illaoi"], "expected_traits": ["TFT17_AnimaSquad", "TFT17_ShieldTank", "TFT17_SummonTrait"], "category": "itemization"}
+{"query": "Set17 游侠卡莎装备搭配", "expected_champions": ["TFT17_Kaisa"], "expected_traits": ["TFT17_AssassinTrait", "TFT17_DarkStar"], "category": "itemization"}
+{"query": "厄加特主C阵容怎么配 S17", "expected_champions": ["TFT17_Urgot"], "expected_traits": ["TFT17_HPTank", "TFT17_Mecha", "TFT17_MeleeTrait"], "category": "itemization"}
+{"query": "S17 厄运小姐带什么装备最强", "expected_champions": ["TFT17_MissFortune"], "expected_traits": ["TFT17_MissFortuneUndeterminedTrait", "TFT17_MissFortuneUniqueTrait"], "category": "itemization"}
+{"query": "Set 17 奥恩站位和出装", "expected_champions": ["TFT17_Ornn"], "expected_traits": ["TFT17_ResistTank", "TFT17_SpaceGroove"], "category": "itemization"}
+{"query": "救世主拉亚斯特阵容运营 S17", "expected_champions": ["TFT17_Rhaast"], "expected_traits": ["TFT17_RhaastUniqueTrait"], "category": "itemization"}
+{"query": "S17 璐璐装备优先级推荐", "expected_champions": ["TFT17_Lulu"], "expected_traits": ["TFT17_APTrait", "TFT17_Stargazer_Wolf"], "category": "itemization"}
+{"query": "维克托适合带什么羁绊 S17", "expected_champions": ["TFT17_Viktor"], "expected_traits": ["TFT17_ManaTrait", "TFT17_PsyOps"], "category": "itemization"}
+{"query": "S17 茂凯出装推荐", "expected_champions": ["TFT17_Maokai"], "expected_traits": ["TFT17_DRX", "TFT17_HPTank"], "category": "itemization"}
+{"query": "Set17 狙神莎弥拉装备搭配", "expected_champions": ["TFT17_Samira"], "expected_traits": ["TFT17_RangedTrait", "TFT17_SpaceGroove"], "category": "itemization"}
+{"query": "菲兹主C阵容怎么配 S17", "expected_champions": ["TFT17_Fizz"], "expected_traits": ["TFT17_AssassinTrait", "TFT17_Astronaut"], "category": "itemization"}
+{"query": "S17 阿萝拉带什么装备最强", "expected_champions": ["TFT17_Aurora"], "expected_traits": ["TFT17_AnimaSquad", "TFT17_FlexTrait"], "category": "itemization"}
+{"query": "Set 17 黛安娜站位和出装", "expected_champions": ["TFT17_Diana"], "expected_traits": ["TFT17_ADMIN", "TFT17_ASTrait"], "category": "itemization"}
+{"query": "法官佐伊阵容运营 S17", "expected_champions": ["TFT17_Zoe"], "expected_traits": ["TFT17_ADMIN", "TFT17_ManaTrait"], "category": "itemization"}
+{"query": "S17 卑尔维斯装备优先级推荐", "expected_champions": ["TFT17_Belveth"], "expected_traits": ["TFT17_ASTrait", "TFT17_MeleeTrait", "TFT17_Primordian"], "category": "itemization"}
+{"query": "古拉加斯适合带什么羁绊 S17", "expected_champions": ["TFT17_Gragas"], "expected_traits": ["TFT17_HPTank", "TFT17_PsyOps"], "category": "itemization"}
+{"query": "S17 小木灵出装推荐", "expected_champions": ["TFT17_IvernMinion"], "expected_traits": ["TFT17_Astronaut", "TFT17_FlexTrait", "TFT17_SummonTrait"], "category": "itemization"}
+{"query": "Set17 游侠格温装备搭配", "expected_champions": ["TFT17_Gwen"], "expected_traits": ["TFT17_AssassinTrait", "TFT17_SpaceGroove"], "category": "itemization"}
+{"query": "派克主C阵容怎么配 S17", "expected_champions": ["TFT17_Pyke"], "expected_traits": ["TFT17_FlexTrait", "TFT17_PsyOps"], "category": "itemization"}
+{"query": "S17 潘森带什么装备最强", "expected_champions": ["TFT17_Pantheon"], "expected_traits": ["TFT17_APTrait", "TFT17_HPTank", "TFT17_Timebreaker"], "category": "itemization"}
+{"query": "Set 17 米利欧站位和出装", "expected_champions": ["TFT17_Milio"], "expected_traits": ["TFT17_Fateweaver", "TFT17_Timebreaker"], "category": "itemization"}
+{"query": "木灵族纳尔阵容运营 S17", "expected_champions": ["TFT17_Gnar"], "expected_traits": ["TFT17_Astronaut", "TFT17_RangedTrait"], "category": "itemization"}
+{"query": "S17 莫德凯撒装备优先级推荐", "expected_champions": ["TFT17_Mordekaiser"], "expected_traits": ["TFT17_DarkStar", "TFT17_ManaTrait", "TFT17_ShieldTank"], "category": "itemization"}
+{"query": "贾克斯适合带什么羁绊 S17", "expected_champions": ["TFT17_Jax"], "expected_traits": ["TFT17_ResistTank", "TFT17_Stargazer_Wolf"], "category": "itemization"}
+{"query": "S17 金克丝出装推荐", "expected_champions": ["TFT17_Jinx"], "expected_traits": ["TFT17_ASTrait", "TFT17_AnimaSquad"], "category": "itemization"}
+{"query": "Set17 新星特攻队阿卡丽装备搭配", "expected_champions": ["TFT17_Akali"], "expected_traits": ["TFT17_DRX", "TFT17_MeleeTrait"], "category": "itemization"}
+{"query": "俄洛伊主C阵容怎么配 S17", "expected_champions": ["TFT17_Illaoi"], "expected_traits": ["TFT17_AnimaSquad", "TFT17_ShieldTank", "TFT17_SummonTrait"], "category": "itemization"}
+{"query": "S17 卡莎带什么装备最强", "expected_champions": ["TFT17_Kaisa"], "expected_traits": ["TFT17_AssassinTrait", "TFT17_DarkStar"], "category": "itemization"}
+{"query": "Set 17 厄加特站位和出装", "expected_champions": ["TFT17_Urgot"], "expected_traits": ["TFT17_HPTank", "TFT17_Mecha", "TFT17_MeleeTrait"], "category": "itemization"}
+{"query": "选择羁绊厄运小姐阵容运营 S17", "expected_champions": ["TFT17_MissFortune"], "expected_traits": ["TFT17_MissFortuneUndeterminedTrait", "TFT17_MissFortuneUniqueTrait"], "category": "itemization"}
+{"query": "S17 奥恩装备优先级推荐", "expected_champions": ["TFT17_Ornn"], "expected_traits": ["TFT17_ResistTank", "TFT17_SpaceGroove"], "category": "itemization"}
+{"query": "拉亚斯特适合带什么羁绊 S17", "expected_champions": ["TFT17_Rhaast"], "expected_traits": ["TFT17_RhaastUniqueTrait"], "category": "itemization"}
+{"query": "S17 璐璐出装推荐", "expected_champions": ["TFT17_Lulu"], "expected_traits": ["TFT17_APTrait", "TFT17_Stargazer_Wolf"], "category": "itemization"}
+{"query": "Set17 神谕维克托装备搭配", "expected_champions": ["TFT17_Viktor"], "expected_traits": ["TFT17_ManaTrait", "TFT17_PsyOps"], "category": "itemization"}
+{"query": "茂凯主C阵容怎么配 S17", "expected_champions": ["TFT17_Maokai"], "expected_traits": ["TFT17_DRX", "TFT17_HPTank"], "category": "itemization"}
+{"query": "S17 莎弥拉带什么装备最强", "expected_champions": ["TFT17_Samira"], "expected_traits": ["TFT17_RangedTrait", "TFT17_SpaceGroove"], "category": "itemization"}
+{"query": "Set 17 菲兹站位和出装", "expected_champions": ["TFT17_Fizz"], "expected_traits": ["TFT17_AssassinTrait", "TFT17_Astronaut"], "category": "itemization"}
+{"query": "幻灵战队阿萝拉阵容运营 S17", "expected_champions": ["TFT17_Aurora"], "expected_traits": ["TFT17_AnimaSquad", "TFT17_FlexTrait"], "category": "itemization"}
+{"query": "S17 黛安娜装备优先级推荐", "expected_champions": ["TFT17_Diana"], "expected_traits": ["TFT17_ADMIN", "TFT17_ASTrait"], "category": "itemization"}
+{"query": "佐伊适合带什么羁绊 S17", "expected_champions": ["TFT17_Zoe"], "expected_traits": ["TFT17_ADMIN", "TFT17_ManaTrait"], "category": "itemization"}
+{"query": "S17 卑尔维斯出装推荐", "expected_champions": ["TFT17_Belveth"], "expected_traits": ["TFT17_ASTrait", "TFT17_MeleeTrait", "TFT17_Primordian"], "category": "itemization"}
+{"query": "Set17 斗士古拉加斯装备搭配", "expected_champions": ["TFT17_Gragas"], "expected_traits": ["TFT17_HPTank", "TFT17_PsyOps"], "category": "itemization"}
+{"query": "小木灵主C阵容怎么配 S17", "expected_champions": ["TFT17_IvernMinion"], "expected_traits": ["TFT17_Astronaut", "TFT17_FlexTrait", "TFT17_SummonTrait"], "category": "itemization"}
+{"query": "S17 格温带什么装备最强", "expected_champions": ["TFT17_Gwen"], "expected_traits": ["TFT17_AssassinTrait", "TFT17_SpaceGroove"], "category": "itemization"}
+{"query": "Set 17 派克站位和出装", "expected_champions": ["TFT17_Pyke"], "expected_traits": ["TFT17_FlexTrait", "TFT17_PsyOps"], "category": "itemization"}
+{"query": "魔术师潘森阵容运营 S17", "expected_champions": ["TFT17_Pantheon"], "expected_traits": ["TFT17_APTrait", "TFT17_HPTank", "TFT17_Timebreaker"], "category": "itemization"}
+{"query": "S17 米利欧装备优先级推荐", "expected_champions": ["TFT17_Milio"], "expected_traits": ["TFT17_Fateweaver", "TFT17_Timebreaker"], "category": "itemization"}
+{"query": "纳尔适合带什么羁绊 S17", "expected_champions": ["TFT17_Gnar"], "expected_traits": ["TFT17_Astronaut", "TFT17_RangedTrait"], "category": "itemization"}
+{"query": "S17 莫德凯撒出装推荐", "expected_champions": ["TFT17_Mordekaiser"], "expected_traits": ["TFT17_DarkStar", "TFT17_ManaTrait", "TFT17_ShieldTank"], "category": "itemization"}
+{"query": "Set17 堡垒卫士贾克斯装备搭配", "expected_champions": ["TFT17_Jax"], "expected_traits": ["TFT17_ResistTank", "TFT17_Stargazer_Wolf"], "category": "itemization"}
+{"query": "S17 丽桑卓过渡出装推荐", "expected_champions": ["TFT17_Lissandra"], "expected_traits": ["TFT17_APTrait", "TFT17_DarkStar", "TFT17_SummonTrait"], "category": "positioning"}
+{"query": "Set17 新星特攻队亚托克斯前期怎么过渡", "expected_champions": ["TFT17_Aatrox"], "expected_traits": ["TFT17_DRX", "TFT17_ResistTank"], "category": "positioning"}
+{"query": "伊泽瑞尔前期打工装备 S17", "expected_champions": ["TFT17_Ezreal"], "expected_traits": ["TFT17_RangedTrait", "TFT17_Timebreaker"], "category": "positioning"}
+{"query": "S17 内瑟斯怎么站位前期", "expected_champions": ["TFT17_Nasus"], "expected_traits": ["TFT17_ShieldTank", "TFT17_SpaceGroove"], "category": "positioning"}
+{"query": "Set 17 一费凯特琳装备推荐", "expected_champions": ["TFT17_Caitlyn"], "expected_traits": ["TFT17_DRX", "TFT17_Fateweaver"], "category": "positioning"}
+{"query": "S17 崔斯特过渡出装推荐", "expected_champions": ["TFT17_TwistedFate"], "expected_traits": ["TFT17_Fateweaver", "TFT17_Stargazer_Wolf"], "category": "positioning"}
+{"query": "Set17 太空律动提莫前期怎么过渡", "expected_champions": ["TFT17_Teemo"], "expected_traits": ["TFT17_SpaceGroove", "TFT17_SummonTrait"], "category": "positioning"}
+{"query": "波比前期打工装备 S17", "expected_champions": ["TFT17_Poppy"], "expected_traits": ["TFT17_Astronaut", "TFT17_ResistTank"], "category": "positioning"}
+{"query": "S17 泰隆怎么站位前期", "expected_champions": ["TFT17_Talon"], "expected_traits": ["TFT17_AssassinTrait", "TFT17_Stargazer_Wolf"], "category": "positioning"}
+{"query": "Set 17 一费科加斯装备推荐", "expected_champions": ["TFT17_Chogath"], "expected_traits": ["TFT17_DarkStar", "TFT17_HPTank"], "category": "positioning"}
+{"query": "S17 维迦过渡出装推荐", "expected_champions": ["TFT17_Veigar"], "expected_traits": ["TFT17_APTrait", "TFT17_Astronaut"], "category": "positioning"}
+{"query": "Set17 法官蕾欧娜前期怎么过渡", "expected_champions": ["TFT17_Leona"], "expected_traits": ["TFT17_ADMIN", "TFT17_ShieldTank"], "category": "positioning"}
+{"query": "贝蕾亚前期打工装备 S17", "expected_champions": ["TFT17_Briar"], "expected_traits": ["TFT17_AnimaSquad", "TFT17_AssassinTrait", "TFT17_Primordian"], "category": "positioning"}
+{"query": "S17 雷克塞怎么站位前期", "expected_champions": ["TFT17_RekSai"], "expected_traits": ["TFT17_HPTank", "TFT17_Primordian"], "category": "positioning"}
+{"query": "Set 17 一费丽桑卓装备推荐", "expected_champions": ["TFT17_Lissandra"], "expected_traits": ["TFT17_APTrait", "TFT17_DarkStar", "TFT17_SummonTrait"], "category": "positioning"}
+{"query": "S17 亚托克斯过渡出装推荐", "expected_champions": ["TFT17_Aatrox"], "expected_traits": ["TFT17_DRX", "TFT17_ResistTank"], "category": "positioning"}
+{"query": "Set17 狙神伊泽瑞尔前期怎么过渡", "expected_champions": ["TFT17_Ezreal"], "expected_traits": ["TFT17_RangedTrait", "TFT17_Timebreaker"], "category": "positioning"}
+{"query": "内瑟斯前期打工装备 S17", "expected_champions": ["TFT17_Nasus"], "expected_traits": ["TFT17_ShieldTank", "TFT17_SpaceGroove"], "category": "positioning"}
+{"query": "S17 凯特琳怎么站位前期", "expected_champions": ["TFT17_Caitlyn"], "expected_traits": ["TFT17_DRX", "TFT17_Fateweaver"], "category": "positioning"}
+{"query": "Set 17 一费崔斯特装备推荐", "expected_champions": ["TFT17_TwistedFate"], "expected_traits": ["TFT17_Fateweaver", "TFT17_Stargazer_Wolf"], "category": "positioning"}
+{"query": "当前版本 T0 阵容推荐", "expected_champions": [], "expected_traits": [], "category": "version_meta"}
+{"query": "S17 版本强势阵容排名", "expected_champions": [], "expected_traits": [], "category": "version_meta"}
+{"query": "Set17 上分最快阵容", "expected_champions": [], "expected_traits": [], "category": "version_meta"}
+{"query": "S17 太空 Gods 版本更新强势羁绊", "expected_champions": [], "expected_traits": [], "category": "version_meta"}
+{"query": "S17 前期过渡阵容推荐", "expected_champions": [], "expected_traits": [], "category": "version_meta"}
+{"query": "Set17 后期决赛圈站位技巧", "expected_champions": [], "expected_traits": [], "category": "positioning"}
+{"query": "S17 经济运营节奏怎么把握", "expected_champions": [], "expected_traits": [], "category": "version_meta"}
+{"query": "Set 17 连胜连败运营思路", "expected_champions": [], "expected_traits": [], "category": "version_meta"}
+{"query": "S17 什么阵容克制法师阵容", "expected_champions": [], "expected_traits": ["TFT17_APTrait"], "category": "version_meta"}
+{"query": "S17 重装战士阵容怎么打刺客", "expected_champions": [], "expected_traits": ["TFT17_ShieldTank", "TFT17_AssassinTrait"], "category": "version_meta"}
+{"query": "Set17 狙神阵容站位怎么摆", "expected_champions": [], "expected_traits": ["TFT17_RangedTrait"], "category": "positioning"}
+{"query": "S17 狂战士阵容出装站位", "expected_champions": [], "expected_traits": ["TFT17_MeleeTrait"], "category": "positioning"}
+{"query": "S17 太空律动羁绊效果是什么", "expected_champions": [], "expected_traits": ["TFT17_SpaceGroove"], "category": "version_meta"}
+{"query": "Set17 观星者羁绊怎么触发", "expected_champions": [], "expected_traits": ["TFT17_Stargazer_Wolf"], "category": "version_meta"}
+{"query": "S17 暗星羁绊效果加成机制", "expected_champions": [], "expected_traits": ["TFT17_DarkStar"], "category": "version_meta"}
+{"query": "S17 什么时候升人口什么时候D牌", "expected_champions": [], "expected_traits": [], "category": "version_meta"}
+{"query": "Set 17 强化符文优先级排名", "expected_champions": [], "expected_traits": [], "category": "version_meta"}
+{"query": "S17 决赛圈对位站位调整", "expected_champions": [], "expected_traits": [], "category": "positioning"}
+{"query": "S17 木灵族羁绊效果详解", "expected_champions": [], "expected_traits": ["TFT17_Astronaut"], "category": "version_meta"}
+{"query": "Set17 幻灵战队羁绊怎么玩", "expected_champions": [], "expected_traits": ["TFT17_AnimaSquad"], "category": "version_meta"}
+{"query": "S17 灵能特工娑娜搭配最高指挥官阵容", "expected_champions": ["TFT17_Sona"], "expected_traits": ["TFT17_PsyOps", "TFT17_SonaUniqueTrait"], "category": "team_comp"}
+{"query": "Set17 木灵族加神谕双羁绊巴德", "expected_champions": ["TFT17_Bard"], "expected_traits": ["TFT17_Astronaut", "TFT17_ManaTrait"], "category": "team_comp"}
+{"query": "S17 汪星机器人和重装战士怎么配合布里茨", "expected_champions": ["TFT17_Blitzcrank"], "expected_traits": ["TFT17_BlitzcrankUniqueTrait", "TFT17_ShieldTank"], "category": "team_comp"}
+{"query": "慎的堡垒卫士和暮光铁壁羁绊联动", "expected_champions": ["TFT17_Shen"], "expected_traits": ["TFT17_ResistTank", "TFT17_ShenUniqueTrait"], "category": "team_comp"}
+{"query": "Set 17 暗星灭星尊阵容烬核心", "expected_champions": ["TFT17_Jhin"], "expected_traits": ["TFT17_DarkStar", "TFT17_JhinUniqueTrait"], "category": "team_comp"}
+{"query": "S17 幻灵战队菲奥娜搭配斗神阵容", "expected_champions": ["TFT17_Fiora"], "expected_traits": ["TFT17_AnimaSquad", "TFT17_FioraUniqueTrait"], "category": "team_comp"}
+{"query": "Set17 观星者加末日使者双羁绊薇古丝", "expected_champions": ["TFT17_Vex"], "expected_traits": ["TFT17_Stargazer_Wolf", "TFT17_VexUniqueTrait"], "category": "team_comp"}
+{"query": "S17 法官和牧羊人怎么配合乐芙兰", "expected_champions": ["TFT17_Leblanc"], "expected_traits": ["TFT17_ADMIN", "TFT17_SummonTrait"], "category": "team_comp"}
+{"query": "努努和威朗普的重装战士和观星者羁绊联动", "expected_champions": ["TFT17_Nunu"], "expected_traits": ["TFT17_ShieldTank", "TFT17_Stargazer_Wolf"], "category": "team_comp"}
+{"query": "Set 17 挑战者新星特攻队阵容千珏核心", "expected_champions": ["TFT17_Kindred"], "expected_traits": ["TFT17_ASTrait", "TFT17_DRX"], "category": "team_comp"}
+{"query": "S17 暗星卡尔玛搭配旅人阵容", "expected_champions": ["TFT17_Karma"], "expected_traits": ["TFT17_DarkStar", "TFT17_FlexTrait"], "category": "team_comp"}
+{"query": "Set17 斗士加命运祭司双羁绊塔姆", "expected_champions": ["TFT17_TahmKench"], "expected_traits": ["TFT17_HPTank", "TFT17_TahmKenchUniqueTrait"], "category": "team_comp"}
+{"query": "S17 神谕和霸天机甲怎么配合奥瑞利安·索尔", "expected_champions": ["TFT17_AurelionSol"], "expected_traits": ["TFT17_ManaTrait", "TFT17_Mecha"], "category": "team_comp"}
+{"query": "娜美的魔术师和太空律动羁绊联动", "expected_champions": ["TFT17_Nami"], "expected_traits": ["TFT17_APTrait", "TFT17_SpaceGroove"], "category": "team_comp"}
+{"query": "Set 17 木灵族织命人阵容库奇核心", "expected_champions": ["TFT17_Corki"], "expected_traits": ["TFT17_Astronaut", "TFT17_Fateweaver"], "category": "team_comp"}
+{"query": "S17 木灵族拉莫斯搭配堡垒卫士阵容", "expected_champions": ["TFT17_Rammus"], "expected_traits": ["TFT17_Astronaut", "TFT17_ResistTank"], "category": "team_comp"}
+{"query": "Set17 狂战士加灵能特工双羁绊易", "expected_champions": ["TFT17_MasterYi"], "expected_traits": ["TFT17_MeleeTrait", "TFT17_PsyOps"], "category": "team_comp"}
+{"query": "S17 旅人和霸天机甲怎么配合超级机甲", "expected_champions": ["TFT17_Galio"], "expected_traits": ["TFT17_FlexTrait", "TFT17_Mecha"], "category": "team_comp"}
+{"query": "锐雯的游侠和未来战士羁绊联动", "expected_champions": ["TFT17_Riven"], "expected_traits": ["TFT17_AssassinTrait", "TFT17_Timebreaker"], "category": "team_comp"}
+{"query": "Set 17 狙神观星者阵容霞核心", "expected_champions": ["TFT17_Xayah"], "expected_traits": ["TFT17_RangedTrait", "TFT17_Stargazer_Wolf"], "category": "team_comp"}
+{"query": "S17 幻灵战队俄洛伊搭配重装战士阵容", "expected_champions": ["TFT17_Illaoi"], "expected_traits": ["TFT17_AnimaSquad", "TFT17_ShieldTank"], "category": "team_comp"}
+{"query": "Set17 游侠加暗星双羁绊卡莎", "expected_champions": ["TFT17_Kaisa"], "expected_traits": ["TFT17_AssassinTrait", "TFT17_DarkStar"], "category": "team_comp"}
+{"query": "S17 斗士和霸天机甲怎么配合厄加特", "expected_champions": ["TFT17_Urgot"], "expected_traits": ["TFT17_HPTank", "TFT17_Mecha"], "category": "team_comp"}
+{"query": "厄运小姐的选择羁绊和武装战姬羁绊联动", "expected_champions": ["TFT17_MissFortune"], "expected_traits": ["TFT17_MissFortuneUndeterminedTrait", "TFT17_MissFortuneUniqueTrait"], "category": "team_comp"}
+{"query": "Set 17 堡垒卫士太空律动阵容奥恩核心", "expected_champions": ["TFT17_Ornn"], "expected_traits": ["TFT17_ResistTank", "TFT17_SpaceGroove"], "category": "team_comp"}
+{"query": "S17 暗星阵容全部棋子推荐", "expected_champions": ["TFT17_Jhin", "TFT17_Karma", "TFT17_Kaisa", "TFT17_Mordekaiser", "TFT17_Lissandra"], "expected_traits": ["TFT17_DarkStar"], "category": "team_comp"}
+{"query": "Set17 幻灵战队羁绊搭配什么阵容", "expected_champions": ["TFT17_Fiora", "TFT17_Illaoi", "TFT17_Aurora", "TFT17_Jinx", "TFT17_Briar"], "expected_traits": ["TFT17_AnimaSquad"], "category": "team_comp"}
+{"query": "S17 霸天机甲羁绊核心英雄有哪些", "expected_champions": ["TFT17_AurelionSol", "TFT17_Galio", "TFT17_Urgot"], "expected_traits": ["TFT17_Mecha"], "category": "team_comp"}
+{"query": "Set 17 新星特攻队阵容怎么运营", "expected_champions": ["TFT17_Kindred", "TFT17_Maokai", "TFT17_Akali", "TFT17_Aatrox", "TFT17_Caitlyn"], "expected_traits": ["TFT17_DRX"], "category": "team_comp"}
+{"query": "S17 灵能特工羁绊克制什么阵容", "expected_champions": ["TFT17_Sona", "TFT17_MasterYi", "TFT17_Viktor", "TFT17_Gragas", "TFT17_Pyke"], "expected_traits": ["TFT17_PsyOps"], "category": "team_comp"}
+{"query": "S17 未来战士阵容全部棋子推荐", "expected_champions": ["TFT17_Shen", "TFT17_Riven", "TFT17_Pantheon", "TFT17_Milio", "TFT17_Ezreal"], "expected_traits": ["TFT17_Timebreaker"], "category": "team_comp"}
+{"query": "Set17 太空律动羁绊搭配什么阵容", "expected_champions": ["TFT17_Blitzcrank", "TFT17_Nami", "TFT17_Ornn", "TFT17_Samira", "TFT17_Gwen"], "expected_traits": ["TFT17_SpaceGroove"], "category": "team_comp"}
+{"query": "S17 木灵族羁绊核心英雄有哪些", "expected_champions": ["TFT17_Bard", "TFT17_Corki", "TFT17_Rammus", "TFT17_Fizz", "TFT17_IvernMinion"], "expected_traits": ["TFT17_Astronaut"], "category": "team_comp"}
+{"query": "Set 17 观星者阵容怎么运营", "expected_champions": ["TFT17_Vex", "TFT17_Nunu", "TFT17_Xayah", "TFT17_Lulu", "TFT17_Jax"], "expected_traits": ["TFT17_Stargazer_Wolf"], "category": "team_comp"}
+{"query": "S17 堡垒卫士羁绊克制什么阵容", "expected_champions": ["TFT17_Shen", "TFT17_Rammus", "TFT17_Ornn", "TFT17_Jax", "TFT17_Aatrox"], "expected_traits": ["TFT17_ResistTank"], "category": "team_comp"}
+{"query": "S17 重装战士阵容全部棋子推荐", "expected_champions": ["TFT17_Blitzcrank", "TFT17_Nunu", "TFT17_Illaoi", "TFT17_Mordekaiser", "TFT17_Nasus"], "expected_traits": ["TFT17_ShieldTank"], "category": "team_comp"}
+{"query": "Set17 斗士羁绊搭配什么阵容", "expected_champions": ["TFT17_TahmKench", "TFT17_Urgot", "TFT17_Maokai", "TFT17_Gragas", "TFT17_Pantheon"], "expected_traits": ["TFT17_HPTank"], "category": "team_comp"}
+{"query": "S17 挑战者羁绊核心英雄有哪些", "expected_champions": ["TFT17_Kindred", "TFT17_Diana", "TFT17_Belveth", "TFT17_Jinx"], "expected_traits": ["TFT17_ASTrait"], "category": "team_comp"}
+{"query": "Set 17 狂战士阵容怎么运营", "expected_champions": ["TFT17_Fiora", "TFT17_MasterYi", "TFT17_Urgot", "TFT17_Belveth", "TFT17_Akali"], "expected_traits": ["TFT17_MeleeTrait"], "category": "team_comp"}
+{"query": "S17 狙神羁绊克制什么阵容", "expected_champions": ["TFT17_Jhin", "TFT17_Xayah", "TFT17_Samira", "TFT17_Gnar", "TFT17_Ezreal"], "expected_traits": ["TFT17_RangedTrait"], "category": "team_comp"}

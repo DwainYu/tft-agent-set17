@@ -1,0 +1,238 @@
+# =============================================================================
+# docker-compose.yml  –  TFT Agent Set17 local development stack
+# =============================================================================
+# Usage:
+#   make up          – start all services
+#   make logs        – tail logs
+#   make down        – stop and remove
+# =============================================================================
+
+networks:
+  tft-net:
+    driver: bridge
+
+volumes:
+  pgdata:
+  milvus-data:
+  milvus-logs:
+  neo4jdata:
+  grafana-data:
+
+services:
+  # ---------------------------------------------------------------------------
+  # Application API
+  # ---------------------------------------------------------------------------
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: tft-api
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    depends_on:
+      postgres:
+        condition: service_healthy
+      milvus:
+        condition: service_healthy
+      neo4j:
+        condition: service_healthy
+    networks:
+      - tft-net
+    restart: unless-stopped
+
+  # ---------------------------------------------------------------------------
+  # PostgreSQL 16
+  # ---------------------------------------------------------------------------
+  postgres:
+    image: postgres:16-alpine
+    container_name: tft-postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: tft
+      POSTGRES_USER: tft
+      POSTGRES_PASSWORD: tft
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U tft"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - tft-net
+    restart: unless-stopped
+
+  # ---------------------------------------------------------------------------
+  # Milvus Standalone v2.4 (vector database)
+  # ---------------------------------------------------------------------------
+  milvus:
+    image: milvusdb/milvus:v2.4-latest
+    container_name: tft-milvus
+    command: ["milvus", "run", "standalone"]
+    ports:
+      - "19530:19530"   # gRPC
+      - "9091:9091"     # metrics
+    volumes:
+      - milvus-data:/var/lib/milvus
+      - milvus-logs:/milvus/logs
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9091/healthz"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 90s
+    networks:
+      - tft-net
+    restart: unless-stopped
+
+  # ---------------------------------------------------------------------------
+  # Neo4j 5 Community (graph database)
+  # ---------------------------------------------------------------------------
+  neo4j:
+    image: neo4j:5-community
+    container_name: tft-neo4j
+    ports:
+      - "7474:7474"   # Browser UI
+      - "7687:7687"   # Bolt
+    environment:
+      NEO4J_AUTH: neo4j/tft_neo4j
+    volumes:
+      - neo4jdata:/data
+    healthcheck:
+      test: ["CMD-SHELL", "cypher-shell -u neo4j -p tft_neo4j 'RETURN 1' || exit 1"]
+      interval: 15s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    networks:
+      - tft-net
+    restart: unless-stopped
+
+  # ---------------------------------------------------------------------------
+  # Prometheus (metrics collection)
+  # ---------------------------------------------------------------------------
+  prometheus:
+    image: prom/prometheus:v2.51.0
+    container_name: tft-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./infra/monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.retention.time=30d"
+    healthcheck:
+      test: ["CMD-SHELL", "wget --spider -q http://localhost:9090/-/healthy"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+    networks:
+      - tft-net
+    restart: unless-stopped
+
+  # ---------------------------------------------------------------------------
+  # Grafana (dashboards)
+  # ---------------------------------------------------------------------------
+  grafana:
+    image: grafana/grafana:10.4.1
+    container_name: tft-grafana
+    ports:
+      - "3001:3000"
+    environment:
+      GF_SECURITY_ADMIN_USER: admin
+      GF_SECURITY_ADMIN_PASSWORD: admin
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./infra/monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+    depends_on:
+      prometheus:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "wget --spider -q http://localhost:3000/api/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+    networks:
+      - tft-net
+    restart: unless-stopped
+
+  # ---------------------------------------------------------------------------
+  # Alertmanager (alert routing)
+  # ---------------------------------------------------------------------------
+  alertmanager:
+    image: prom/alertmanager:v0.27.0
+    container_name: tft-alertmanager
+    ports:
+      - "9093:9093"
+    volumes:
+      - ./infra/monitoring/alertmanager/alertmanager.yml:/etc/alertmanager/alertmanager.yml:ro
+    command:
+      - "--config.file=/etc/alertmanager/alertmanager.yml"
+    healthcheck:
+      test: ["CMD-SHELL", "wget --spider -q http://localhost:9093/-/healthy"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+    networks:
+      - tft-net
+    restart: unless-stopped
+
+  # ---------------------------------------------------------------------------
+  # Jaeger (distributed tracing)
+  # ---------------------------------------------------------------------------
+  jaeger:
+    image: jaegertracing/all-in-one:1.56
+    container_name: tft-jaeger
+    ports:
+      - "16686:16686"  # Jaeger UI
+      - "4317:4317"    # OTLP gRPC
+    environment:
+      COLLECTOR_OTLP_ENABLED: "true"
+    healthcheck:
+      test: ["CMD-SHELL", "wget --spider -q http://localhost:16686/"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+    networks:
+      - tft-net
+    restart: unless-stopped
+
+  # ---------------------------------------------------------------------------
+  # vLLM (LLM inference server) — GPU required
+  # ---------------------------------------------------------------------------
+  # Uncomment and configure when a CUDA-capable GPU is available.
+  #
+  # vllm:
+  #   image: vllm/vllm-openai:latest
+  #   container_name: tft-vllm
+  #   runtime: nvidia            # requires NVIDIA Container Toolkit
+  #   deploy:
+  #     resources:
+  #       reservations:
+  #         devices:
+  #           - driver: nvidia
+  #             count: all
+  #             capabilities: [gpu]
+  #   ports:
+  #     - "8001:8000"
+  #   environment:
+  #     - HUGGING_FACE_HUB_TOKEN=${HF_TOKEN}
+  #   command: >
+  #     --model meta-llama/Llama-3-8B-Instruct
+  #     --host 0.0.0.0
+  #     --port 8000
+  #     --gpu-memory-utilization 0.9
+  #   volumes:
+  #     - ~/.cache/huggingface:/root/.cache/huggingface
+  #   healthcheck:
+  #     test: ["CMD-SHELL", "curl -f http://localhost:8000/health || exit 1"]
+  #     interval: 30s
+  #     timeout: 10s
+  #     retries: 5
+  #     start_period: 120s
+  #   networks:
+  #     - tft-net
+  #   restart: unless-stopped

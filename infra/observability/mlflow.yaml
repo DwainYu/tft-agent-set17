@@ -1,0 +1,10 @@
+tracking:
+  uri: http://localhost:5000
+  experiment: tft-agent-eval
+model_registry:
+  name: tft-agent-models
+  stage: staging
+logging:
+  log_models: true
+  log_metrics: true
+  log_params: true

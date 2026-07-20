@@ -1,0 +1,62 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# IDE / editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Git
+.git/
+.gitignore
+
+# Docker
+Dockerfile
+docker-compose.yml
+docker-compose*.yml
+
+# Data
+data/*.db
+data/*.sqlite
+data/*.sqlite3
+
+# Frontend build artefacts
+frontend/node_modules/
+frontend/dist/
+
+# Large raw data collections
+asset/data/
+data_collection/data/raw/
+
+# Environment and secrets
+.env
+.env.*
+*.pem
+*.key
+
+# Documentation (not needed inside image)
+*.md
+
+# CI / misc
+.github/
+.pre-commit-config.yaml
+.pytest_cache/
+.ruff_cache/
+htmlcov/
+.coverage
+coverage.xml

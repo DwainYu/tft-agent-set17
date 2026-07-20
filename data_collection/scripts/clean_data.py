@@ -32,9 +32,22 @@ CLEANED_DIR = SCRIPT_DIR.parent / "data" / "cleaned"  # data_collection/data/cle
 CLEANED_DIR.mkdir(parents=True, exist_ok=True)
 
 # === Load Raw Data ===
-print("Loading matches_raw.json ...")
-with open(DATA_DIR / "matches_raw.json", "r", encoding="utf-8") as f:
-    raw_matches = json.load(f)
+import sqlite3
+import glob
+
+# Auto-detect SQLite DB
+db_files = sorted(glob.glob(str(DATA_DIR / "*.db")))
+if not db_files:
+    raise FileNotFoundError(f"No .db files found in {DATA_DIR}")
+db_path = db_files[-1]  # use latest DB
+print(f"Loading from SQLite: {db_path}")
+
+conn = sqlite3.connect(db_path)
+cursor = conn.execute("SELECT raw_json FROM matches")
+raw_matches = []
+for (raw_json,) in cursor:
+    raw_matches.append(json.loads(raw_json))
+conn.close()
 print(f"  Loaded {len(raw_matches)} matches")
 
 # === Filter ===
