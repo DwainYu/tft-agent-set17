@@ -111,9 +111,11 @@ class ToolRegistry:
         conn = self._conn
 
         # Lazy-import heavy services so the module loads without them
+        from api.config import get_settings
         from api.services.comp_query import CompQuery
         from api.services.item_query import ItemQuery
 
+        _rag_top_k = get_settings().RAG_TOP_K
         comp_q = CompQuery(conn)
         item_q = ItemQuery(conn)
 
@@ -184,7 +186,7 @@ class ToolRegistry:
                 "type": "object",
                 "properties": {
                     "query": {"type": "string", "description": "自然语言查询"},
-                    "top_k": {"type": "integer", "default": 5},
+                    "top_k": {"type": "integer", "default": _rag_top_k},
                 },
                 "required": ["query"],
             },
@@ -274,16 +276,15 @@ class ToolRegistry:
 
     # -- tool implementations -----------------------------------------------
 
-    def _rag_search(self, query: str, top_k: int = 5) -> list[dict]:
+    def _rag_search(self, query: str, top_k: int | None = None) -> list[dict]:
         try:
-            from api.services.rag.engine import RAGEngine
-            from api.services.rag.embedding import BGEEmbedding
-            from api.services.rag.reranker import BGEReranker
+            from api.config import get_settings
+            from api.services.rag.engine import get_rag_engine
 
-            embedding = BGEEmbedding()
-            reranker = BGEReranker()
-            engine = RAGEngine(embedding=embedding, reranker=reranker)
-            docs, latency = engine.query(query, top_k=top_k)
+            # Fall back to the configured default so RAG_TOP_K actually takes effect.
+            k = top_k if top_k is not None else get_settings().RAG_TOP_K
+            engine = get_rag_engine()  # process-level singleton
+            docs, latency = engine.query(query, top_k=k)
             return [
                 {"content": d.content, "score": d.score, "metadata": d.metadata}
                 for d in docs
@@ -294,14 +295,10 @@ class ToolRegistry:
 
     def _graph_query(self, champion_name: str) -> list[dict]:
         try:
-            from api.services.rag.graph_store import GraphStore
+            from api.services.rag.graph_store import get_graph_store
 
-            store = GraphStore()
-            store.connect()
-            try:
-                return store.get_champion_synergies(champion_name)
-            finally:
-                store.close()
+            store = get_graph_store()  # process-level singleton (reads settings)
+            return store.get_champion_synergies(champion_name)
         except Exception as exc:
             logger.warning("graph_query unavailable: %s", exc)
             return [{"error": f"图数据库暂不可用: {exc}"}]

@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import logging
 import time
+from functools import lru_cache
 from typing import Any
 
 logger = logging.getLogger(__name__)
@@ -198,3 +199,28 @@ class GraphStore:
         conn.close()
         logger.info("Graph build complete: %d entities/relationships", count)
         return count
+
+
+# ---------------------------------------------------------------------------
+# Singleton factory
+# ---------------------------------------------------------------------------
+@lru_cache(maxsize=1)
+def get_graph_store() -> GraphStore:
+    """Process-level singleton GraphStore assembled from ``api.config``.
+
+    Connection errors are intentionally *not* caught here: ``lru_cache`` does
+    not cache exceptions, so a failed connect is retried on the next call
+    (i.e. Neo4j recovers without restarting the process). Callers that treat
+    the graph as optional should wrap this in try/except and degrade to
+    ``None``.
+    """
+    from api.config import get_settings
+
+    s = get_settings()
+    store = GraphStore(
+        uri=s.NEO4J_URI,
+        user=s.NEO4J_USER,
+        password=s.NEO4J_PASSWORD,
+    )
+    store.connect()  # raises if unreachable → not cached → retried next call
+    return store

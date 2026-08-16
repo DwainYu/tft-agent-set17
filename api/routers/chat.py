@@ -129,7 +129,7 @@ async def ask_question(req: AskRequest):
             "metadata": {"question": req.question, "direction": req.direction},
         }
 
-        app = get_agent_app()
+        app = await get_agent_app()
 
         try:
             # Stream LangGraph node updates as SSE events
@@ -167,7 +167,7 @@ async def ask_plan(req: AskRequest):
         "configurable": {"thread_id": _thread_id(req)},
     }
 
-    app = get_agent_app_with_interrupt()
+    app = await get_agent_app_with_interrupt()
 
     try:
         # Run until interrupt_before=["executor"] pauses the graph
@@ -205,7 +205,7 @@ async def ask_resume(thread_id: str):
 
     async def event_generator():
         config = {"configurable": {"thread_id": thread_id}}
-        app = get_agent_app_with_interrupt()
+        app = await get_agent_app_with_interrupt()
 
         try:
             # Resume with None input to continue from checkpoint

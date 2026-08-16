@@ -21,6 +21,11 @@ async def lifespan(app: FastAPI):
     if static_dir.exists():
         print(f"Static assets: {static_dir}")
     yield
+    # Shutdown: close LangGraph checkpoint connections (non-daemon aiosqlite
+    # worker threads would otherwise block interpreter exit).
+    from api.agent.graph import close_agent_apps
+
+    await close_agent_apps()
 
 
 app = FastAPI(title=settings.APP_NAME, lifespan=lifespan)

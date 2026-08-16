@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import type { ItemDelta } from "../types";
+import ItemIcon from "./ItemIcon";
 
 interface ArtifactBlockProps {
   items: ItemDelta[];
@@ -17,8 +18,9 @@ export default function ArtifactBlock({ items }: ArtifactBlockProps) {
         {items.map((item, i) => (
           <li
             key={i}
-            className="flex items-center justify-between rounded bg-tft-dark/40 px-2.5 py-1.5 text-sm"
+            className="flex items-center gap-2 rounded bg-tft-dark/40 px-2.5 py-1.5 text-sm"
           >
+            {item.item_id && <ItemIcon name={item.item_id} size={24} />}
             <div className="min-w-0 flex-1">
               <span className="text-gray-200">{item.name_zh}</span>
               {item.target && (

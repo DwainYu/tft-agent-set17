@@ -20,10 +20,11 @@ export function ConversationProvider({ children }: { children: ReactNode }) {
   const conv = useConversations(!!user);
   const [selectedId, setSelectedId] = useState<number | null>(null);
 
+  // "新对话" just clears the selection — the actual backend conversation
+  // is auto-created on first message send (see ChatArea.handleSend).
   const createConversation = useCallback(async () => {
-    const newConv = await conv.create('新对话');
-    setSelectedId(newConv.id);
-  }, [conv]);
+    setSelectedId(null);
+  }, []);
 
   return (
     <ConversationContext.Provider

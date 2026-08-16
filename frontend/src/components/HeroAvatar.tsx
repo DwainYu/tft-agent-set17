@@ -29,18 +29,18 @@ export default function HeroAvatar({ champion }: HeroAvatarProps) {
   const costText = COST_TEXT[champion.cost] ?? "text-white";
 
   return (
-    <div className="flex w-14 flex-col items-center gap-1">
-      {/* Avatar */}
+    <div className="flex w-16 flex-col items-center gap-1">
+      {/* Avatar — wider to match 2:1 splash art */}
       <div className="relative">
         {showFallback ? (
-          <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-tft-border text-lg font-bold text-white">
+          <div className="flex h-12 w-16 items-center justify-center rounded-lg bg-tft-border text-lg font-bold text-white">
             {champion.name_zh.charAt(0)}
           </div>
         ) : (
           <img
             src={champion.icon!}
             alt={champion.name_zh}
-            className="h-12 w-12 rounded-lg object-cover"
+            className="h-12 w-16 rounded-lg object-cover object-top"
             onError={() => setImgError(true)}
           />
         )}

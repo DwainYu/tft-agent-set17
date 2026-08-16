@@ -37,7 +37,7 @@ export function useSSE() {
   const [error, setError] = useState<string | null>(null);
   const abortRef = useRef<AbortController | null>(null);
 
-  const ask = useCallback(async (question: string, direction?: Direction): Promise<AskResult> => {
+  const ask = useCallback(async (question: string, direction?: Direction, conversationId?: string): Promise<AskResult> => {
     // Reset state
     setLoading(true);
     setError(null);
@@ -54,7 +54,7 @@ export function useSSE() {
 
     return new Promise<AskResult>((resolve, reject) => {
       postAsk(
-        { question, direction },
+        { question, direction, conversation_id: conversationId },
         (event: SSEEvent) => {
           if (event.stage === 'result' && event.data) {
             const cardData = event.data.card;

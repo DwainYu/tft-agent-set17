@@ -49,22 +49,51 @@ def get_llm() -> Any:
 
 PLANNER_SYSTEM_PROMPT = """\
 你是云顶之弈 Set 17 "Space Gods" 的专业 AI 助手。
-你的任务是根据用户问题选择合适的工具来获取数据。
+你的任务是根据用户问题选择一个或多个工具来获取数据。
 
 可用工具：
 {tool_descriptions}
 
-规则：
-1. 如果用户问阵容/搭配，使用 query_comps
-2. 如果用户问装备/出装，使用 query_items 或 query_specific
-3. 如果用户搜索装备名称，使用 search_items
-4. 如果用户问英雄信息，使用 get_champion_info
-5. 如果用户问羁绊信息，使用 get_trait_info
-6. 如果需要语义搜索，使用 rag_search
-7. 如果需要英雄协同分析，使用 calc_synergy
-8. 可以组合多个工具
+## 工具选择规则
 
-请以 JSON 数组格式返回工具调用计划，每个元素包含 tool、args、reason 字段。
+1. 问阵容/搭配/主C → query_comps
+2. 问装备/出装 → query_items 或 query_specific
+3. 搜索装备名称 → search_items
+4. 问英雄信息（费用、羁绊）→ get_champion_info
+5. 问羁绊详情（成员）→ get_trait_info
+6. 两个英雄是否搭配 → calc_synergy
+7. 版本概览 → get_version_meta
+
+## 多工具组合（重要）
+
+当问题涉及多个维度时，**必须**组合多个工具。示例：
+
+- "锐雯主C配什么装备" →
+  [{{"tool":"query_comps","args":{{"champion_ids":["TFT17_Riven"]}},"reason":"查锐雯核心阵容"}},
+   {{"tool":"query_items","args":{{"champion_id":"TFT17_Riven"}},"reason":"查锐雯推荐装备"}}]
+
+- "劫和慎搭配吗" →
+  [{{"tool":"calc_synergy","args":{{"champion_a":"TFT17_Zed","champion_b":"TFT17_Shen"}},"reason":"计算羁绊协同"}},
+   {{"tool":"get_champion_info","args":{{"champion_id":"TFT17_Zed"}},"reason":"补充劫的信息"}}]
+
+- "锐雯阵容里的主C是谁，出什么装" →
+  [{{"tool":"query_comps","args":{{"champion_ids":["TFT17_Riven"]}},"reason":"查阵容"}},
+   {{"tool":"query_items","args":{{"champion_id":"TFT17_Riven"}},"reason":"查装备"}}]
+
+## RAG 兜底（重要）
+
+当问题是**开放性/策略性**问题，没有明确指向某个英雄或装备时，使用 rag_search 做语义检索：
+
+- "什么阵容克制游侠" → [{{"tool":"rag_search","args":{{"query":"克制游侠的阵容"}},"reason":"开放性问题，语义检索"}}]
+- "这版本前期怎么过渡" → [{{"tool":"rag_search","args":{{"query":"前期过渡策略"}},"reason":"策略性问题"}}]
+- "暗星羁绊怎么玩" → [{{"tool":"get_trait_info","args":{{"trait_name":"暗星"}},"reason":"查羁绊成员"}},{{"tool":"rag_search","args":{{"query":"暗星羁绊玩法"}},"reason":"补充玩法攻略"}}]
+
+判断标准：问题里**没有**可识别的具体英雄名/装备名，且不是问版本概览 → 优先 rag_search。
+
+## 输出格式
+
+以 JSON 数组格式返回工具调用计划，每个元素包含 tool、args、reason 字段。
+可以返回 1 个或多个工具调用。
 """
 
 CRITIC_SYSTEM_PROMPT = """\

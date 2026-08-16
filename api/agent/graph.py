@@ -6,18 +6,17 @@ Graph topology::
                               ↑           |
                               └── retry ──┘  (conditional, ≤ AGENT_MAX_ITERATIONS)
 
-Checkpoint: SqliteSaver for dev (data/checkpoints.db).
+Checkpoint: AsyncSqliteSaver for dev (data/checkpoints.db).
 Human-in-loop: ``interrupt_before=["executor"]`` pauses the graph before
 tool execution so the caller can inspect / modify the plan.
 """
 from __future__ import annotations
 
 import logging
-import sqlite3
-from functools import lru_cache
 from typing import Any
 
-from langgraph.checkpoint.sqlite import SqliteSaver
+import aiosqlite
+from langgraph.checkpoint.sqlite.aio import AsyncSqliteSaver
 from langgraph.graph import END, START, StateGraph
 
 from api.agent.nodes import (
@@ -96,31 +95,69 @@ def compile_agent(
 
 
 # ---------------------------------------------------------------------------
-# Singleton app with SQLite checkpointer
+# Singleton app with async SQLite checkpointer
 # ---------------------------------------------------------------------------
 
-@lru_cache
-def get_agent_app() -> Any:
-    """Return a compiled agent graph with SQLite checkpoint persistence.
+_agent_app: Any = None
+_agent_app_interrupt: Any = None
+# Keep references to the underlying aiosqlite connections so they can be
+# closed explicitly.  aiosqlite spawns a *non-daemon* worker thread per
+# connection; if the connections are never closed the interpreter hangs at
+# shutdown (threading._shutdown waits for those threads forever).
+_checkpointer_conns: list[Any] = []
+
+
+async def close_agent_apps() -> None:
+    """Close checkpoint connections and reset the compiled-app singletons.
+
+    Call this on FastAPI lifespan shutdown and in test teardown so the
+    aiosqlite worker threads can exit and the process can terminate.
+    """
+    global _agent_app, _agent_app_interrupt
+
+    for conn in _checkpointer_conns:
+        try:
+            await conn.close()
+        except Exception as exc:  # pragma: no cover - defensive
+            logger.warning("Failed to close checkpoint connection: %s", exc)
+    _checkpointer_conns.clear()
+    _agent_app = None
+    _agent_app_interrupt = None
+
+
+async def get_agent_app() -> Any:
+    """Return a compiled agent graph with async SQLite checkpoint persistence.
 
     The checkpointer enables:
     - Conversation state persistence across requests
     - Human-in-loop resume (interrupt → inspect → continue)
     - Crash recovery (reload from last checkpoint)
     """
-    settings = get_settings()
-    conn = sqlite3.connect(settings.CHECKPOINT_DB, check_same_thread=False)
-    checkpointer = SqliteSaver(conn)
-    return compile_agent(checkpointer=checkpointer, interrupt_before_executor=False)
+    global _agent_app
+    if _agent_app is None:
+        settings = get_settings()
+        conn = await aiosqlite.connect(settings.CHECKPOINT_DB)
+        _checkpointer_conns.append(conn)
+        checkpointer = AsyncSqliteSaver(conn)
+        _agent_app = compile_agent(
+            checkpointer=checkpointer, interrupt_before_executor=False
+        )
+    return _agent_app
 
 
-def get_agent_app_with_interrupt() -> Any:
+async def get_agent_app_with_interrupt() -> Any:
     """Return a compiled agent graph with human-in-loop interrupt enabled.
 
     Use this variant when the caller wants to pause before tool execution
     and let the user inspect / modify the plan.
     """
-    settings = get_settings()
-    conn = sqlite3.connect(settings.CHECKPOINT_DB, check_same_thread=False)
-    checkpointer = SqliteSaver(conn)
-    return compile_agent(checkpointer=checkpointer, interrupt_before_executor=True)
+    global _agent_app_interrupt
+    if _agent_app_interrupt is None:
+        settings = get_settings()
+        conn = await aiosqlite.connect(settings.CHECKPOINT_DB)
+        _checkpointer_conns.append(conn)
+        checkpointer = AsyncSqliteSaver(conn)
+        _agent_app_interrupt = compile_agent(
+            checkpointer=checkpointer, interrupt_before_executor=True
+        )
+    return _agent_app_interrupt

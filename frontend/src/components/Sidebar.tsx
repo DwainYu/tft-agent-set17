@@ -4,6 +4,21 @@ import { MessageSquare, Plus, LogOut, Menu, X } from "lucide-react";
 import { useAuthContext } from "../context/AuthContext";
 import { useConversationContext } from "../context/ConversationContext";
 
+/** Format an ISO date string as relative time in Chinese. */
+function relTime(iso: string | null): string {
+  if (!iso) return "";
+  const diff = Date.now() - new Date(iso).getTime();
+  const min = Math.floor(diff / 60_000);
+  if (min < 1) return "刚刚";
+  if (min < 60) return `${min}分钟前`;
+  const hr = Math.floor(min / 60);
+  if (hr < 24) return `${hr}小时前`;
+  const day = Math.floor(hr / 24);
+  if (day === 1) return "昨天";
+  if (day < 30) return `${day}天前`;
+  return new Date(iso).toLocaleDateString("zh-CN");
+}
+
 export default function Sidebar() {
   const { user, login, logout } = useAuthContext();
   const {
@@ -54,16 +69,23 @@ export default function Sidebar() {
             type="button"
             onClick={() => selectConversation(conv.id)}
             className={clsx(
-              "flex w-full items-center gap-2 truncate rounded-lg px-3 py-2 text-left text-sm transition-colors",
+              "flex w-full items-center gap-2 truncate rounded-lg px-3 py-2 text-left transition-colors",
               selectedId === conv.id
                 ? "bg-tft-dark text-white"
                 : "text-gray-400 hover:bg-tft-dark/50 hover:text-gray-200"
             )}
           >
             <MessageSquare size={14} className="shrink-0" />
-            <span className="truncate">
-              {conv.title ?? `对话 ${conv.id.toString().slice(0, 6)}`}
-            </span>
+            <div className="min-w-0 flex-1">
+              <span className="block truncate text-sm">
+                {conv.title ?? `对话 ${conv.id.toString().slice(0, 6)}`}
+              </span>
+              {conv.updated_at && (
+                <span className="block text-[10px] text-gray-600">
+                  {relTime(conv.updated_at)}
+                </span>
+              )}
+            </div>
           </button>
         ))}
       </div>

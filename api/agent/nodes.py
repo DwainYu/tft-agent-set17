@@ -42,7 +42,12 @@ def _get_registry(conn: sqlite3.Connection) -> ToolRegistry:
 
 
 def _rule_based_plan(question: str, direction: str | None, entities: list[dict]) -> list[ToolCallPlan]:
-    """Fallback planner that mirrors the original IntentRouter logic."""
+    """Fallback planner that mirrors the original IntentRouter logic.
+
+    Enhancements over the original single-tool router:
+    - Combines query_comps + query_items when both champion and item keywords appear.
+    - Falls back to rag_search for open-ended questions with no matched entities.
+    """
     from api.services.intent_router import IntentRouter
 
     conn = _get_conn()
@@ -57,8 +62,18 @@ def _rule_based_plan(question: str, direction: str | None, entities: list[dict])
     champion_ids = [e["canonical_id"] for e in ents if e.get("type") == "champion"]
     item_ids = [e["canonical_id"] for e in ents if e.get("type") == "item"]
     item_names = [e["name_zh"] for e in ents if e.get("type") == "item"]
+    trait_names = [e["name_zh"] for e in ents if e.get("type") == "trait"]
 
     plan: list[ToolCallPlan] = []
+
+    # Open-ended question with no entities and no direction → RAG fallback
+    if not ents and not direction:
+        plan.append({
+            "tool": "rag_search",
+            "args": {"query": question},
+            "reason": "开放性问题，无匹配实体，走语义检索兜底",
+        })
+        return plan
 
     if tool_name == "query_comps":
         plan.append({
@@ -66,19 +81,19 @@ def _rule_based_plan(question: str, direction: str | None, entities: list[dict])
             "args": {"champion_ids": champion_ids or []},
             "reason": f"用户询问阵容推荐，匹配到英雄: {champion_ids}",
         })
+        # If the question also mentions items, add an item query too
+        if item_ids or _mentions_items(question):
+            plan.append({
+                "tool": "query_items",
+                "args": {"champion_id": champion_ids[0] if champion_ids else None},
+                "reason": "问题同时涉及装备，补充装备查询",
+            })
     elif tool_name == "query_items":
-        if item_ids:
-            plan.append({
-                "tool": "query_items",
-                "args": {"champion_id": champion_ids[0] if champion_ids else None},
-                "reason": "用户询问装备推荐",
-            })
-        else:
-            plan.append({
-                "tool": "query_items",
-                "args": {"champion_id": champion_ids[0] if champion_ids else None},
-                "reason": "用户询问装备推荐",
-            })
+        plan.append({
+            "tool": "query_items",
+            "args": {"champion_id": champion_ids[0] if champion_ids else None},
+            "reason": "用户询问装备推荐",
+        })
     elif tool_name == "search_items":
         plan.append({
             "tool": "search_items",
@@ -92,7 +107,23 @@ def _rule_based_plan(question: str, direction: str | None, entities: list[dict])
             "reason": "用户查询英雄专属装备",
         })
 
+    # If a trait was mentioned alongside a champion, add trait info
+    if trait_names and champion_ids:
+        plan.append({
+            "tool": "get_trait_info",
+            "args": {"trait_name": trait_names[0]},
+            "reason": f"问题涉及羁绊: {trait_names[0]}",
+        })
+
     return plan or [{"tool": "query_comps", "args": {"champion_ids": []}, "reason": "默认阵容查询"}]
+
+
+_ITEM_KEYWORDS = ("装备", "出装", "出什么", "带什么装", "神器", "纹章", "核心装")
+
+
+def _mentions_items(question: str) -> bool:
+    """Heuristic: does the question reference items/equipment?"""
+    return any(kw in question for kw in _ITEM_KEYWORDS)
 
 
 # ---------------------------------------------------------------------------
@@ -151,9 +182,29 @@ def _llm_plan(
         names = ", ".join(e.get("name_zh", e.get("canonical_id", "")) for e in entities)
         entity_hint = f"\n识别到的实体: {names}"
 
+    # On retry, feed back the critique and previous results so the planner
+    # can adjust its strategy instead of repeating the same plan.
+    retry_context = ""
+    iteration = state.get("iteration", 0)
+    if iteration > 0:
+        critique = state.get("critique", "")
+        prev_results = state.get("tool_results", [])
+        prev_plan = state.get("plan", [])
+        if critique or prev_results:
+            retry_context = "\n\n【上一轮反馈】\n"
+            if prev_plan:
+                tried = ", ".join(p.get("tool", "?") for p in prev_plan)
+                retry_context += f"已尝试的工具: {tried}\n"
+            if critique:
+                retry_context += f"评审意见: {critique}\n"
+            if prev_results:
+                summary = json.dumps(prev_results, ensure_ascii=False, default=str)[:1500]
+                retry_context += f"上一轮结果摘要: {summary}\n"
+            retry_context += "请根据反馈调整工具计划（换工具、补充查询或调整参数），不要重复完全相同的计划。"
+
     messages = [
         SystemMessage(content=system_msg),
-        HumanMessage(content=f"用户问题: {question}\n方向提示: {direction or '自动'}{entity_hint}"),
+        HumanMessage(content=f"用户问题: {question}\n方向提示: {direction or '自动'}{entity_hint}{retry_context}"),
     ]
 
     try:

@@ -1,18 +1,54 @@
-# Environment
-.env
-.venv/
+# Python
 __pycache__/
-*.pyc
+*.py[cod]
+*.egg-info/
+*.so
+dist/
+build/
+.eggs/
+*.egg
+.venv/
+venv/
+env/
 
-# Data (large files, not for GitHub)
-data_collection/data/raw/*.db
-data_collection/data/raw/*.json
-data_collection/data/cleaned/*.csv
+# Python build/test/cache
+.pytest_cache/
+.ruff_cache/
+htmlcov/
+.coverage
+coverage.xml
+.mypy_cache/
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+
+# Data (large/local)
+data/*.db
+data/*.sqlite
+data/*.sqlite3
+asset/data/
+data_collection/data/raw/
+
+# AI Models (large weights)
+models/models/
+models/.lock/
+
+# Environment and secrets
+.env
+.env.*
+*.pem
+*.key
 
 # IDE
 .vscode/
 .idea/
+.catpaw/
+.qoderwork
 
 # OS
 Thumbs.db
 .DS_Store
+
+# Docs screenshots (large images)
+docs/tftai-screenshots/

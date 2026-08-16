@@ -29,10 +29,13 @@ class Settings(BaseSettings):
     NEO4J_URI: str = "bolt://localhost:7687"
     NEO4J_USER: str = "neo4j"
     NEO4J_PASSWORD: str = "tft_neo4j"
-    EMBEDDING_MODEL: str = "BAAI/bge-m3"
-    RERANKER_MODEL: str = "BAAI/bge-reranker-v2-m3"
+    EMBEDDING_MODEL: str = "models/models/Xorbits--bge-m3/snapshots/master"
+    RERANKER_MODEL: str = "models/models/BAAI--bge-reranker-v2-m3"
     RAG_TOP_K: int = 5
     DEVICE: str = "cpu"
+    # Half precision for GPU inference. Keep False on CPU (fp16 needs CUDA);
+    # enabling it roughly halves VRAM usage so BGE-M3 + reranker fit in 6GB.
+    USE_FP16: bool = False
 
     # ── Agent / LLM (W3) ───────────────────────────────────────
     # OpenAI-compatible endpoint (vLLM, Ollama, or OpenAI itself).

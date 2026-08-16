@@ -143,6 +143,13 @@ async def api_client(
     async with AsyncClient(transport=transport, base_url="http://testserver") as client:
         yield client
 
+    # ASGITransport does not run lifespan events, so clean up the agent
+    # checkpointer connections here explicitly — their aiosqlite worker
+    # threads are non-daemon and would hang pytest at interpreter shutdown.
+    from api.agent.graph import close_agent_apps
+
+    await close_agent_apps()
+
     get_settings.cache_clear()
 
 

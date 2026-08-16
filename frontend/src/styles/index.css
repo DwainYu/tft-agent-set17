@@ -16,3 +16,36 @@
     @apply bg-tft-card border border-tft-border rounded-xl p-4;
   }
 }
+
+@layer utilities {
+  /* Message entrance animation */
+  .animate-msg-in {
+    animation: msg-in 0.25s ease-out both;
+  }
+  @keyframes msg-in {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Thin custom scrollbar */
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: theme("colors.tft-border");
+    border-radius: 9999px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background: theme("colors.tft-gold / 50%");
+  }
+}

@@ -1,7 +1,13 @@
-"""RAG internal endpoints — /internal/rag/query and /internal/graph/query."""
+"""RAG internal endpoints — /internal/rag/query and /internal/graph/query.
+
+The engine and graph singletons are owned by the service layer
+(``api.services.rag.engine`` / ``api.services.rag.graph_store``) and shared
+with the agent tool layer, so models and connections are created once.
+"""
 from __future__ import annotations
 
 import logging
+import time
 
 from fastapi import APIRouter, HTTPException
 
@@ -12,82 +18,12 @@ from api.models.rag import (
     GraphQueryRequest,
     GraphQueryResponse,
 )
+from api.services.rag.engine import get_rag_engine
+from api.services.rag.graph_store import get_graph_store
 
 logger = logging.getLogger(__name__)
 
 router = APIRouter(prefix="/internal", tags=["rag"])
-
-# ---------------------------------------------------------------------------
-# Module-level singletons (populated on first request / at startup)
-# ---------------------------------------------------------------------------
-_rag_engine = None
-_graph_store = None
-
-
-def get_rag_engine():
-    """Lazy-init the RAGEngine singleton."""
-    global _rag_engine
-    if _rag_engine is None:
-        from api.config import get_settings
-        from api.services.rag.engine import RAGEngine, MilvusStore
-        from api.services.rag.embedding import BGEEmbedding
-        from api.services.rag.reranker import BGEReranker
-        from api.services.rag.graph_store import GraphStore
-
-        s = get_settings()
-        embedding = BGEEmbedding(
-            model_name=s.EMBEDDING_MODEL,
-            device=s.DEVICE,
-        )
-        reranker = BGEReranker(
-            model_name=s.RERANKER_MODEL,
-            device=s.DEVICE,
-        )
-        milvus = MilvusStore(host=s.MILVUS_HOST, port=s.MILVUS_PORT)
-        graph = GraphStore(
-            uri=s.NEO4J_URI,
-            user=s.NEO4J_USER,
-            password=s.NEO4J_PASSWORD,
-        )
-        try:
-            milvus.connect()
-            milvus.ensure_collection()
-        except Exception as exc:
-            logger.warning("Milvus not available: %s", exc)
-
-        try:
-            graph.connect()
-        except Exception as exc:
-            logger.warning("Neo4j not available: %s", exc)
-            graph = None
-
-        _rag_engine = RAGEngine(
-            embedding=embedding,
-            reranker=reranker,
-            milvus=milvus,
-            graph=graph,
-        )
-    return _rag_engine
-
-
-def get_graph_store():
-    """Lazy-init the GraphStore singleton."""
-    global _graph_store
-    if _graph_store is None:
-        from api.config import get_settings
-        from api.services.rag.graph_store import GraphStore
-
-        s = get_settings()
-        _graph_store = GraphStore(
-            uri=s.NEO4J_URI,
-            user=s.NEO4J_USER,
-            password=s.NEO4J_PASSWORD,
-        )
-        try:
-            _graph_store.connect()
-        except Exception as exc:
-            logger.warning("Neo4j not available: %s", exc)
-    return _graph_store
 
 
 # ---------------------------------------------------------------------------
@@ -96,7 +32,14 @@ def get_graph_store():
 @router.post("/rag/query", response_model=RagQueryResponse)
 async def rag_query(req: RagQueryRequest):
     """Hybrid search + optional reranking over the TFT document store."""
-    engine = get_rag_engine()
+    try:
+        engine = get_rag_engine()
+    except Exception as exc:
+        logger.warning("RAG engine unavailable: %s", exc)
+        raise HTTPException(
+            status_code=503, detail=f"RAG service unavailable: {exc}"
+        ) from exc
+
     try:
         scored, latency_ms = engine.query(
             req.query,
@@ -123,10 +66,13 @@ async def rag_query(req: RagQueryRequest):
 @router.post("/graph/query", response_model=GraphQueryResponse)
 async def graph_query(req: GraphQueryRequest):
     """Execute a read-only Cypher query against the TFT knowledge graph."""
-    import time
+    try:
+        store = get_graph_store()
+    except Exception as exc:
+        logger.warning("Graph store unavailable: %s", exc)
+        raise HTTPException(status_code=503, detail="Neo4j not available") from exc
 
-    store = get_graph_store()
-    if store is None or not store.is_healthy():
+    if not store.is_healthy():
         raise HTTPException(status_code=503, detail="Neo4j not available")
 
     start = time.perf_counter()

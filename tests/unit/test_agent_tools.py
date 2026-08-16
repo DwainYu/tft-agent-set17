@@ -283,11 +283,19 @@ class TestSQLiteTools:
 
 
 class TestGracefulDegradation:
-    """RAG and Graph tools degrade gracefully when services unavailable."""
+    """RAG and Graph tools degrade gracefully when services unavailable.
+
+    These tests patch the service-layer factories to raise, so they exercise
+    the degradation path deterministically regardless of whether real
+    Milvus/Neo4j instances happen to be running.
+    """
 
     def test_rag_search_unavailable(self, registry):
-        # Without Milvus running, should return a friendly error dict
-        result = registry.execute("rag_search", {"query": "亚索阵容"})
+        with patch(
+            "api.services.rag.engine.get_rag_engine",
+            side_effect=RuntimeError("Milvus down"),
+        ):
+            result = registry.execute("rag_search", {"query": "亚索阵容"})
         assert result["success"] is True
         data = result["data"]
         assert isinstance(data, list)
@@ -295,7 +303,11 @@ class TestGracefulDegradation:
         assert "暂不可用" in data[0]["content"]
 
     def test_graph_query_unavailable(self, registry):
-        result = registry.execute("graph_query", {"champion_name": "亚索"})
+        with patch(
+            "api.services.rag.graph_store.get_graph_store",
+            side_effect=RuntimeError("Neo4j down"),
+        ):
+            result = registry.execute("graph_query", {"champion_name": "亚索"})
         assert result["success"] is True
         data = result["data"]
         assert isinstance(data, list)
