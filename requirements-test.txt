@@ -7,5 +7,5 @@ black>=24.0
 testcontainers[postgres]>=4.8
 schemathesis>=3.38
 ragas>=0.2
-deepeval>=2.0
+deepeval>=4.1.8
 locust>=2.31
